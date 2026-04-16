@@ -1,0 +1,34 @@
+{% extends 'shop/base.html' %}
+
+{% block content %}
+
+<h3 class="mb-4">Products</h3>
+
+<div class="row">
+
+{% for product in products %}
+    <div class="col-md-3">
+        <div class="card mb-4 shadow-sm">
+
+            {% if product.image %}
+                <img src="{{ product.image.url }}" class="card-img-top" style="height:200px; object-fit:cover;">
+            {% else %}
+                <img src="https://via.placeholder.com/200" class="card-img-top">
+            {% endif %}
+
+            <div class="card-body">
+                <h6 class="card-title">{{ product.name }}</h6>
+                <p class="text-success fw-bold">₹ {{ product.price }}</p>
+
+                <a href="/add-to-cart/{{ product.id }}/" class="btn btn-primary btn-sm w-100">
+                    Add to Cart
+                </a>
+            </div>
+
+        </div>
+    </div>
+{% endfor %}
+
+</div>
+
+{% endblock %}
